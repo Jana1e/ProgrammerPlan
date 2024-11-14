@@ -100,85 +100,26 @@
               <li>
                 <a class="dropdown-item " href="#"><span class="flag-icon flag-icon-us me-1"></span> <span>English</span></a>
               </li>
-              <!-- <li>
-               <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-fr me-1"></span> <span>French</span></a>
-             </li>
-             <li>
-               <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-es me-1"></span> <span>Spanich</span></a>
-             </li> -->
+           
 
             </ul>
           </div>
         </li>
 
-        <!-- <li class="nav-item dropdown pe-3">
-        <a href="signup.php">
-          Sign/Login
-        </a>
-        </li> -->
+
         <li class="nav-item dropdown">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+          <a class="nav-link nav-icon" href="manage_notification.php" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
             <span class="badge bg-primary badge-number">4</span>
           </a><!-- End Notification Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="all_notification.php"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+               notifications manage
+              <a href="manage_notification.php"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
+             
 
             <li>
               <hr class="dropdown-divider">
@@ -299,7 +240,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link  side_li_text <?php echo $current_file_name == 'community.php' ? 'active' : '' ; ?>" href="community.php">
+        <a class="nav-link  side_li_text <?php echo $current_file_name == 'community_manage.php' ? 'active' : '' ; ?>" href="community_manage.php">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M21.0936 10.7992C21.2616 10.8737 21.4074 10.9338 21.5496 11.0026C22.4952 11.4581 23.232 12.1407 23.7438 13.059C24.4635 14.3504 23.5872 15.8825 22.1099 15.8968C20.6362 15.9112 19.1625 15.9004 17.6887 15.9004C17.5915 15.9004 17.4951 15.9004 17.3921 15.9004C17.3535 16.1096 17.3321 16.3044 17.2814 16.4906C17.0276 17.4246 16.2272 18.0657 15.2273 18.0736C13.0839 18.0908 10.9397 18.0915 8.79632 18.0736C7.64849 18.0635 6.79155 17.2513 6.65218 16.1074C6.64504 16.0465 6.63789 15.9864 6.62717 15.8997C6.52354 15.8997 6.42705 15.8997 6.33057 15.8997C4.89257 15.8997 3.45457 15.894 2.01657 15.9018C1.23397 15.9061 0.622174 15.601 0.242662 14.9134C-0.131846 14.2337 -0.0546571 13.5568 0.349154 12.9043C0.959517 11.9194 1.80859 11.2282 2.92426 10.8013C2.14165 10.1058 1.77786 9.26277 1.94153 8.23349C2.05088 7.54516 2.36392 6.9657 2.92568 6.53665C4.02562 5.69719 5.70805 5.84546 6.60573 6.86112C7.39548 7.75503 7.72139 9.49627 6.25981 10.8006C7.31544 11.2067 8.15236 11.8714 8.75701 12.8011C9.23014 12.5683 9.69042 12.342 10.1664 12.1085C9.32878 11.4402 8.86421 10.5771 8.90352 9.49269C8.93425 8.6389 9.24087 7.88897 9.8791 7.29661C11.1048 6.15918 13.1718 6.24155 14.3074 7.47783C15.3016 8.56011 15.6046 10.6982 13.8457 12.1121C14.3067 12.3384 14.7663 12.564 15.2473 12.8004C15.8491 11.8843 16.6703 11.2103 17.7516 10.8056C16.9404 10.0707 16.5709 9.18899 16.7911 8.11029C16.9247 7.45563 17.2449 6.90983 17.7888 6.50944C18.8973 5.69289 20.5662 5.86121 21.4438 6.87545C22.4387 8.02649 22.3136 9.54068 21.0936 10.7992ZM11.9746 17.2205C13.0095 17.2205 14.0451 17.2205 15.08 17.2205C15.0979 17.2205 15.1158 17.2205 15.1337 17.2205C16.2314 17.1997 16.8361 16.1733 16.2951 15.2221C15.3609 13.5797 13.9158 12.7524 12.054 12.7352C10.1829 12.718 8.71127 13.5174 7.74855 15.1576C7.1389 16.1962 7.74283 17.2183 8.94926 17.2205C9.95772 17.2219 10.9662 17.2205 11.9746 17.2205ZM15.9641 13.286C16.3637 13.8583 16.7303 14.3927 17.1105 14.917C17.1599 14.985 17.2814 15.0359 17.3693 15.0359C18.9395 15.043 20.5104 15.0466 22.0806 15.038C22.9454 15.033 23.405 14.2086 22.9805 13.4486C21.4624 10.7333 17.5336 10.6724 15.9641 13.286ZM8.04801 13.2746C7.21895 12.0419 6.03039 11.3342 4.46517 11.3808C2.93712 11.4266 1.78286 12.1543 1.01598 13.4759C0.595015 14.2021 1.06672 15.0316 1.90008 15.0373C3.48816 15.0481 5.07625 15.0423 6.66433 15.0366C6.73866 15.0366 6.84301 14.9965 6.88375 14.9399C7.26684 14.4063 7.63848 13.8648 8.04801 13.2746ZM12.0061 11.8177C13.2918 11.8163 14.2553 10.8593 14.2531 9.58509C14.251 8.31801 13.2747 7.35033 11.9996 7.35177C10.7253 7.3532 9.75117 8.32517 9.75331 9.59153C9.75617 10.8672 10.7189 11.8191 12.0061 11.8177ZM4.5931 10.4854C5.60013 10.4833 6.42705 9.66173 6.42491 8.66468C6.42276 7.66621 5.59513 6.8511 4.58596 6.85324C3.57679 6.85539 2.75415 7.67337 2.7563 8.67185C2.75916 9.67032 3.58751 10.4876 4.5931 10.4854ZM19.4298 10.4854C20.4375 10.4776 21.2616 9.64884 21.2501 8.65537C21.2387 7.65188 20.4154 6.84823 19.4048 6.85324C18.397 6.85897 17.5758 7.68268 17.5823 8.68044C17.5887 9.67749 18.4242 10.4933 19.4298 10.4854Z" fill="white" />
             <path d="M11.9949 23.9957C7.45715 23.8617 3.91862 21.9744 1.58152 17.9976C1.54078 17.9282 1.49719 17.8587 1.47074 17.7835C1.39713 17.5708 1.45287 17.3888 1.6437 17.2714C1.84596 17.1474 2.03965 17.1861 2.19474 17.3652C2.25263 17.4318 2.29266 17.5142 2.3384 17.5908C4.26669 20.8097 7.08551 22.7544 10.8063 23.1068C15.5169 23.5537 19.1484 21.6341 21.657 17.6058C21.8914 17.2291 22.0916 17.1109 22.3446 17.2463C22.6112 17.3888 22.6355 17.6388 22.4032 18.0356C20.437 21.3985 17.5074 23.3238 13.6766 23.8983C13.3857 23.9419 13.0919 23.9742 12.7982 23.9914C12.5309 24.0078 12.2622 23.9957 11.9949 23.9957Z" fill="white" />
