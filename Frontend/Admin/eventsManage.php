@@ -1,6 +1,6 @@
 <?php include 'header.php'; ?>
 
-<section class="banner_slider mb-0">
+<section class="banner_slider mb-0"><!--هنا يبدأ عرض الصور-->
 
 <div class="container-xxl p-lg-0 ">
     <div class="row">
@@ -38,7 +38,6 @@
 <section class="section dashboard ">
   <div class="container-xxl">
 
-
     <!-- card_shadow sec -->
      
     <div class="card_shadow shadow_sec_padd ">
@@ -57,6 +56,7 @@
               <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#bordered-contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Add Event </button>
             </li>
           </ul>
+
           <div class="tab-content pt-2" id="borderedTabContent">
             <div class="tab-pane fade show active" id="bordered-home" role="tabpanel" aria-labelledby="home-tab">
               <div class="hk_events mb-3">
@@ -81,6 +81,7 @@
                 </div>
               </div>
             </div>
+            
             <div class="tab-pane fade" id="bordered-profile" role="tabpanel" aria-labelledby="profile-tab">
               <div class="hk_events mb-3">
                 <img src="../assets/img/hk.png" class="img-fluid w-100" alt="hackton">
@@ -91,6 +92,7 @@
                   </a>
                 </div>
               </div>
+
               <div class="hk_events mb-3">
                 <img src="../assets/img/hackton.png" class="img-fluid w-100" alt="hackton">
 
@@ -100,7 +102,9 @@
                   </a>
                 </div>
               </div>
+
             </div>
+
             <div class="tab-pane fade" id="bordered-contact" role="tabpanel" aria-labelledby="contact-tab">
 
               <div class="hk_events mb-3">
@@ -137,12 +141,6 @@
 
 
     </div>
-
-
-
-
-
-
 
 
     <!-- End Right side columns -->
