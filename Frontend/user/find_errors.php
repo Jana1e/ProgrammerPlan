@@ -31,11 +31,9 @@
       <!-- Feedback area -->
       <div id="feedback" class="feedback mt-3"></div>
 
-      <!-- Next question button (hidden by default) -->
-      <button id="nextQuestion" class="btn btn-secondary mt-3" onclick="loadNextQuestion()" style="display: none;">Next Question</button>
     </div>
 
-    <!-- Final Score (hidden by default) -->
+    <!-- Final Score  -->
     <div id="finalScore" class="final-score mt-4" style="display: none;"></div>
   </div>
 </div>
@@ -175,11 +173,18 @@ const questions = {
     ]
   }
 };
+// Get the current language and level from the URL parameters
+const urlParams = new URLSearchParams(window.location.search);
+const language = urlParams.get('language') ; 
+const level = urlParams.get('level'); 
+
+console.log('Selected Language: ' + language);
+console.log('Selected Level: ' + level);
 
 let currentQuestionIndex = 0;
 let score = 0;
-let selectedLanguage = "JavaScript";  
-let selectedLevel = "Beginner";       
+let selectedLanguage = language;  
+let selectedLevel = level;       
 
 // Function to start the game
 function startGame() {
@@ -209,22 +214,26 @@ function checkAnswer() {
 
   // Show modal with feedback
   const modalFeedback = document.getElementById('modalFeedback');
+
   if (userAnswer.toLowerCase() === question.error.toLowerCase()) {
     modalFeedback.innerText = 'Correct! Well done.';
-    score++;  // Increment score for correct answer
+    modalFeedback.style.color = 'green';  
+    score++;  
   } else {
-    modalFeedback.innerText = 'Incorrect. Try again.';
+    modalFeedback.innerText = 'Incorrect.';
+    modalFeedback.style.color = 'red'; 
   }
 
   const gameModal = new bootstrap.Modal(document.getElementById('gameModal'));
   gameModal.show();
 
-  // Close modal after 3 seconds and move to the next question
+  // Close modal and move to the next question
   setTimeout(() => {
     gameModal.hide();
     loadNextQuestion();
   }, 1000);
 }
+
 
 // Function to load the next question or display final score
 function loadNextQuestion() {
