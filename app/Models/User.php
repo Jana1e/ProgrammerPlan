@@ -1,0 +1,179 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
+use App\Models\Cart;
+use App\Notifications\EmailVerificationNotification;
+use App\Traits\PreventDemoModeChanges;
+use Spatie\Permission\Traits\HasRoles;
+
+class User extends Authenticatable implements MustVerifyEmail
+{
+    use Notifiable, HasApiTokens, HasRoles;
+
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new EmailVerificationNotification());
+    }
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'password', 'address', 'city', 'postal_code', 'phone', 'country', 'provider_id', 'email_verified_at', 'verification_code'
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class);
+    }
+
+    public function customer()
+    {
+        return $this->hasOne(Customer::class);
+    }
+
+   
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    
+
+    public function shop()
+    {
+        return $this->hasOne(Shop::class);
+    }
+    public function seller()
+    {
+        return $this->hasOne(Seller::class);
+    }
+
+
+    public function staff()
+    {
+        return $this->hasOne(Staff::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function seller_orders()
+    {
+        return $this->hasMany(Order::class, "seller_id");
+    }
+    public function seller_sales()
+    {
+        return $this->hasMany(OrderDetail::class, "seller_id");
+    }
+
+  
+
+    public function club_point()
+    {
+        return $this->hasOne(ClubPoint::class);
+    }
+
+    public function customer_package()
+    {
+        return $this->belongsTo(CustomerPackage::class);
+    }
+
+    public function customer_package_payments()
+    {
+        return $this->hasMany(CustomerPackagePayment::class);
+    }
+
+ 
+
+  
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
+    }
+
+
+
+    public function product_bids()
+    {
+        return $this->hasMany(AuctionProductBid::class);
+    }
+
+    public function product_queries(){
+        return $this->hasMany(ProductQuery::class,'customer_id');
+    }
+
+    public function uploads(){
+        return $this->hasMany(Upload::class);
+    }
+
+    
+
+
+
+
+
+
+
+
+
+
+ public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+
+ public function courses()
+{
+    return $this->belongsToMany(Product::class, 'user_courses', 'user_id', 'course_id');
+}
+
+
+
+
+    public function progress()
+    {
+        return $this->hasMany(UserProgress::class);
+    }
+
+
+    public function userProgress()
+    {
+        return $this->hasMany(UserProgress::class, 'user_id', 'id');
+    }
+    
+
+
+
+
+}
