@@ -78,7 +78,7 @@
 
 
 
-                            <form class="" action="{{ route('my-work.store') }}" method="POST"
+                            <form class="" action="{{ route('work.store') }}" method="POST"
                                 enctype="multipart/form-data" id="choice_form">
                                 @csrf
                                 <!-- Data type -->
@@ -104,6 +104,28 @@
                                             <label for="projectDuration">Project Duration</label>
                                         </div>
                                     </div>
+
+                                    <div class="col-12">
+                                        <div class="form-floating mb-1">
+                                        <select id="demo-ease" class="form-control" name="category_id" required>
+                                        <option value="">{{ translate('Choose Category') }}</option>
+            
+                                        @foreach (\App\Models\Category::all() as $key => $category)
+                                        @if($category->digital==1)
+                                            <option value="{{ $category->id }}">{{ $category->getTranslation('name') }}
+                                            </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                           
+                                        </div>
+                                    </div>
+
+
+
+                                  
+
+
                                     <!-- Project Description -->
                                     <div class="col-12">
                                         <div class="form-floating">
@@ -137,14 +159,7 @@
 
                                     </div>
 
-                                    <select id="demo-ease" class="" name="category_id" required>
-                                        <option value="">{{ translate('Choose Category') }}</option>
-                                        <option value="">{{ translate('Choose Category') }}</option>
-                                        @foreach (\App\Models\Category::all() as $key => $category)
-                                            <option value="{{ $category->id }}">{{ $category->getTranslation('name') }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                   
                                     <!-- Submit Button -->
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-dark w-100 py-3">Add</button>

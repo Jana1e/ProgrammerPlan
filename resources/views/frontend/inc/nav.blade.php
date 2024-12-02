@@ -284,10 +284,14 @@
                                 <hr class="dropdown-divider">
                             </li>
                             <li>
-                                <a class="dropdown-item d-flex align-items-center" href="{{ route('dashboard') }}">
+                            @if (Auth::check() && auth()->user()->user_type == 'devloper' ||auth()->user()->user_type == 'teacher' )
+
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('about_me') }}">
                                     <i class="bi bi-gear"></i>
                                     <span> {{ translate('Setting') }}</span>
                                 </a>
+
+                                @endif
                         @endif
 
 

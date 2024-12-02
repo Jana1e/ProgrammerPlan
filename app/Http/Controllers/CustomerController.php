@@ -185,8 +185,8 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         $customer = User::findOrFail($id);
-        $customer->customer_products()->delete(); 
-
+       
+        $customer-> userProgress()->delete(); 
         User::destroy($id);
         flash(translate('Customer has been deleted successfully'))->success();
         return redirect()->route('customers.index');
@@ -196,7 +196,7 @@ class CustomerController extends Controller
         if($request->id) {
             foreach ($request->id as $customer_id) {
                 $customer = User::findOrFail($customer_id);
-                $customer->customer_products()->delete(); 
+                $customer-> userProgress()->delete(); 
                 $this->destroy($customer_id);
             }
         }

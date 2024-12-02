@@ -74,6 +74,7 @@ class ConversationController extends Controller
     {
 
         $user_type = User::findOrFail($request->receiver_id)->user_type;
+       
         $conversation = new Conversation;
         $conversation->sender_id = Auth::user()->id;
         $conversation->receiver_id = $request->receiver_id;
@@ -85,8 +86,8 @@ class ConversationController extends Controller
             $message->message = $request->message;
             if ($message->save()) {
                 $this->send_message_to_seller($conversation, $message, $user_type);
-
-              //  (new OrderController)->store($request);
+if($user_type=="devloper")
+               (new OrderController)->store($request);
             }
         }
 

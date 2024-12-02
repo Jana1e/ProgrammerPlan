@@ -1,6 +1,6 @@
-@extends('seller.layouts.app')
+@extends('frontend.layouts.app')
 
-@section('panel_content')
+@section('content')
 
     <div class="card">
         <div class="card-header">
@@ -280,7 +280,7 @@
         $('#update_delivery_status').on('change', function() {
             var order_id = {{ $order->id }};
             var status = $('#update_delivery_status').val();
-            $.post('{{ route('seller.orders.update_delivery_status') }}', {
+            $.post('{{ route('orders.update_delivery_status') }}', {
                 _token: '{{ @csrf_token() }}',
                 order_id: order_id,
                 status: status
@@ -294,7 +294,7 @@
         $('#update_payment_status').on('change', function() {
             var order_id = {{ $order->id }};
             var status = $('#update_payment_status').val();
-            $.post('{{ route('seller.orders.update_payment_status') }}', {
+            $.post('{{ route('orders.update_payment_status') }}', {
                 _token: '{{ @csrf_token() }}',
                 order_id: order_id,
                 status: status

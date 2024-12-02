@@ -71,6 +71,8 @@ class AizUploadController extends Controller
     }
     public function upload(Request $request)
     {
+
+       
         $type = array(
             "jpg" => "image",
             "jpeg" => "image",
@@ -151,6 +153,9 @@ class AizUploadController extends Controller
                     }
                     try {
                         $path = 'uploads/all/'. Str::random(40) . '.' .$extension;
+                        $file = $request->file('aiz_file');
+                        $file->move(public_path('uploads/all'), $path);
+                        $path = $file->store('uploads', 'public');
                         $img = Image::make($request->file('aiz_file')->getRealPath())->encode($extension, 75);
                         $height = $img->height();
                         $width = $img->width();
@@ -230,7 +235,7 @@ class AizUploadController extends Controller
                             }
                         }
 
-                        $img->save(base_path('public/') . $path);
+                        $img->save(base_path('C:/xampp/htdocs/programmer/public/') . $path);
                         clearstatcache();
                         $size = $img->filesize();
                     } catch (\Exception $e) {

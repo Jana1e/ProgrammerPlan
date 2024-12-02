@@ -126,8 +126,8 @@ class NotificationController extends Controller
             if($userType == 'admin'){
                 return redirect()->route('all_orders.show', encrypt($notification->data['order_id']));
             }
-            elseif($userType == 'seller'){
-                return redirect()->route('seller.orders.show', encrypt($notification->data['order_id']));
+            elseif($userType == 'devloper'){
+                return redirect()->route('devloper_orders.show', encrypt($notification->data['order_id']));
             }
             elseif($userType == 'customer'){
                 return redirect()->route('purchase_history.details', encrypt($notification->data['order_id']));

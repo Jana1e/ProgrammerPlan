@@ -852,7 +852,7 @@ if (!function_exists('get_active_taxes')) {
     }
 }
 
-if (!function_exists('get_system_language')) {
+if (!function_exists('get_system_language')) {//
     function get_system_language()
     {
         $language_query = Language::query();
@@ -948,7 +948,7 @@ if (!function_exists('get_product_min_unit_price')) {
         if ($user_id) {
             $product_query = $product_query->where('user_id', $user_id);
         }
-        return $product_query->isApprovedPublished()->min('unit_price');
+        return $product_query->isApprovedPublished()->min('price');
     }
 }
 
@@ -960,7 +960,7 @@ if (!function_exists('get_product_max_unit_price')) {
         if ($user_id) {
             $product_query = $product_query->where('user_id', $user_id);
         }
-        return $product_query->isApprovedPublished()->max('unit_price');
+        return $product_query->isApprovedPublished()->max('price');
     }
 }
 

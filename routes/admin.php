@@ -423,8 +423,18 @@ Route::get('/lectures/show_image/{id}', [LecturesController::class, 'show_image'
     });
 
     // Order
-    Route::resource('orders', OrderController::class);
-    Route::controller(OrderController::class)->group(function () {
+     Route::resource('orders', OrderController::class);
+     Route::controller(OrderController::class)->group(function () {
+
+        Route::get('/orders/{id}/show', 'show')->name('all_orders.show');
+
+      Route::get('/orders/destroy/{id}', 'destroy')->name('orders.destroy');
+        Route::post('/orders/details', 'order_details')->name('orders.details');
+        Route::post('/orders/update_delivery_status', 'update_delivery_status')->name('orders.update_delivery_status');
+        Route::post('/orders/update_payment_status', 'update_payment_status')->name('orders.update_payment_status');
+        Route::post('/orders/update_tracking_code', 'update_tracking_code')->name('orders.update_tracking_code');
+
+
         // All Orders
         Route::get('/all_orders', 'all_orders')->name('all_orders.index');
         Route::get('/inhouse-orders', 'all_orders')->name('inhouse_orders.index');
@@ -432,9 +442,9 @@ Route::get('/lectures/show_image/{id}', [LecturesController::class, 'show_image'
         Route::get('/orders_by_pickup_point', 'all_orders')->name('pick_up_point.index');
         Route::get('/unpaid_orders', 'all_orders')->name('unpaid_orders.index');
 
-        Route::get('/orders/{id}/show', 'show')->name('all_orders.show');
+        
         Route::get('/inhouse-orders/{id}/show', 'show')->name('inhouse_orders.show');
-        Route::get('/seller_orders/{id}/show', 'show')->name('seller_orders.show');
+      
         Route::get('/orders_by_pickup_point/{id}/show', 'show')->name('pick_up_point.order_show');
 
         Route::post('/bulk-order-status', 'bulk_order_status')->name('bulk-order-status');
@@ -442,21 +452,16 @@ Route::get('/lectures/show_image/{id}', [LecturesController::class, 'show_image'
         Route::get('/orders/destroy/{id}', 'destroy')->name('orders.destroy');
         Route::post('/bulk-order-delete', 'bulk_order_delete')->name('bulk-order-delete');
 
-        Route::get('/orders/destroy/{id}', 'destroy')->name('orders.destroy');
-        Route::post('/orders/details', 'order_details')->name('orders.details');
-        Route::post('/orders/update_delivery_status', 'update_delivery_status')->name('orders.update_delivery_status');
-        Route::post('/orders/update_payment_status', 'update_payment_status')->name('orders.update_payment_status');
-        Route::post('/orders/update_tracking_code', 'update_tracking_code')->name('orders.update_tracking_code');
+  
+    //     //Delivery Boy Assign
+    //     Route::post('/orders/delivery-boy-assign', 'assign_delivery_boy')->name('orders.delivery-boy-assign');
 
-        //Delivery Boy Assign
-        Route::post('/orders/delivery-boy-assign', 'assign_delivery_boy')->name('orders.delivery-boy-assign');
+    //     // Order bulk export
+    //     Route::get('/order-bulk-export', 'orderBulkExport')->name('order-bulk-export');
 
-        // Order bulk export
-        Route::get('/order-bulk-export', 'orderBulkExport')->name('order-bulk-export');
-
-        // 
-        Route::post('order-payment-notification', 'unpaid_order_payment_notification_send')->name('unpaid_order_payment_notification');
-    });
+    //     // 
+    //     Route::post('order-payment-notification', 'unpaid_order_payment_notification_send')->name('unpaid_order_payment_notification');
+     });
 
     Route::post('/pay_to_seller', [CommissionController::class, 'pay_to_seller'])->name('commissions.pay_to_seller');
 

@@ -170,7 +170,7 @@
               @endif
 
               <li class="aiz-side-nav-item">
-                  <a href="{{ route('seller.orders.index') }}"
+                  <a href="{{ route('orders.index') }}"
                       class="aiz-side-nav-link {{ areActiveRoutes(['seller.orders.index', 'seller.orders.show']) }}">
                       <i class="las la-money-bill aiz-side-nav-icon"></i>
                       <span class="aiz-side-nav-text">{{ translate('Orders') }}</span>

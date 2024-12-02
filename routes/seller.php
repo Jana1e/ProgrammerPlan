@@ -71,14 +71,14 @@ Route::group(['namespace' => 'App\Http\Controllers\Seller', 'prefix' => 'seller'
     });
 
     //Order
-    Route::resource('orders', OrderController::class);
-    Route::controller(OrderController::class)->group(function () {
-        Route::post('/orders/update_delivery_status', 'update_delivery_status')->name('orders.update_delivery_status');
-        Route::post('/orders/update_payment_status', 'update_payment_status')->name('orders.update_payment_status');
+    // Route::resource('orders', OrderController::class);
+    // Route::controller(OrderController::class)->group(function () {
+    //     Route::post('/orders/update_delivery_status', 'update_delivery_status')->name('orders.update_delivery_status');
+    //     Route::post('/orders/update_payment_status', 'update_payment_status')->name('orders.update_payment_status');
 
-        // Order bulk export
-        Route::get('/order-bulk-export', 'orderBulkExport')->name('order-bulk-export');
-    });
+    //     // Order bulk export
+    //     Route::get('/order-bulk-export', 'orderBulkExport')->name('order-bulk-export');
+    // });
 
     Route::controller(InvoiceController::class)->group(function () {
         Route::get('/invoice/{order_id}', 'invoice_download')->name('invoice.download');

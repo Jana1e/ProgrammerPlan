@@ -66,7 +66,7 @@
                                     </a>
                                 </li>
                                 
-                        <li><a class="dropdown-item" href="courses.php" target="_blank">Add Course </a></li>
+                        <!-- <li><a class="dropdown-item" href="courses.php" target="_blank">Add Course </a></li> -->
                     </ul>
                 </div>
 

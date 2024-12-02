@@ -185,7 +185,8 @@ class RegisterController extends Controller
 
 
     protected function registered(Request $request, $user)
-    {
+    {            return back();
+
         if ($user->email == null) {
             return redirect()->route('verification');
         } elseif (session('link') != null) {

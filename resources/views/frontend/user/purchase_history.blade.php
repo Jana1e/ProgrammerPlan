@@ -3,7 +3,7 @@
 @section('panel_content')
     <div class="card shadow-none rounded-0 border">
         <div class="card-header border-bottom-0">
-            <h5 class="mb-0 fs-20 fw-700 text-dark">{{ translate('Purchase History') }}</h5>
+            <h5 class="mb-0 fs-20 fw-700 text-dark">{{ translate('Orders History') }}</h5>
         </div>
         <div class="card-body">
             <table class="table  mb-0">
@@ -11,7 +11,7 @@
                     <tr>
                         <th class="pl-0">{{ translate('Code')}}</th>
                         <th data-breakpoints="md">{{ translate('Date')}}</th>
-                        <th>{{ translate('Amount')}}</th>
+                      
                         <th data-breakpoints="md">{{ translate('Delivery Status')}}</th>
                         <th data-breakpoints="md">{{ translate('Payment Status')}}</th>
                         <th class="text-right pr-0">{{ translate('Options')}}</th>
@@ -19,7 +19,7 @@
                 </thead>
                 <tbody class="fs-14">
                     @foreach ($orders as $key => $order)
-                        @if (count($order->orderDetails) > 0)
+                     
                             <tr>
                                 <!-- Code -->
                                 <td class="pl-0">
@@ -27,8 +27,7 @@
                                 </td>
                                 <!-- Date -->
                                 <td class="text-secondary">{{ date('d-m-Y', $order->date) }}</td>
-                                <!-- Amount -->
-                                <td class="fw-700">
+                           
                                    
                                 </td>
                                 <!-- Delivery Status -->
@@ -51,10 +50,7 @@
                                 </td>
                                 <!-- Options -->
                                 <td class="text-right pr-0">
-                                    <!-- Re-order -->
-                                    <a class="btn-soft-white rounded-3 btn-sm mr-1" href="{{ route('re_order', encrypt($order->id)) }}">
-                                        {{ translate('Reorder') }}
-                                    </a>
+                                   
                                     <!-- Cancel -->
                                     @if ($order->delivery_status == 'pending' && $order->payment_status == 'unpaid')
                                         <a href="javascript:void(0)" class="btn btn-soft-danger btn-icon btn-circle btn-sm hov-svg-white mt-2 mt-sm-0 confirm-delete" data-href="{{route('purchase_history.destroy', $order->id)}}" title="{{ translate('Cancel') }}">
@@ -63,29 +59,11 @@
                                             </svg>
                                         </a>
                                     @endif
-                                    <!-- Details -->
-                                    <a href="{{route('purchase_history.details', encrypt($order->id))}}" class="btn btn-soft-info btn-icon btn-circle btn-sm hov-svg-white mt-2 mt-sm-0" title="{{ translate('Order Details') }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10" viewBox="0 0 12 10">
-                                            <g id="Group_24807" data-name="Group 24807" transform="translate(-1339 -422)">
-                                                <rect id="Rectangle_18658" data-name="Rectangle 18658" width="12" height="1" transform="translate(1339 422)" fill="#3490f3"/>
-                                                <rect id="Rectangle_18659" data-name="Rectangle 18659" width="12" height="1" transform="translate(1339 425)" fill="#3490f3"/>
-                                                <rect id="Rectangle_18660" data-name="Rectangle 18660" width="12" height="1" transform="translate(1339 428)" fill="#3490f3"/>
-                                                <rect id="Rectangle_18661" data-name="Rectangle 18661" width="12" height="1" transform="translate(1339 431)" fill="#3490f3"/>
-                                            </g>
-                                        </svg>
-                                    </a>
-                                    {{-- <!-- Invoice -->
-                                    <a class="btn btn-soft-secondary-base btn-icon btn-circle btn-sm hov-svg-white mt-2 mt-sm-0" href="{{ route('invoice.download', $order->id) }}" title="{{ translate('Download Invoice') }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12.001" viewBox="0 0 12 12.001">
-                                            <g id="Group_24807" data-name="Group 24807" transform="translate(-1341 -424.999)">
-                                              <path id="Union_17" data-name="Union 17" d="M13936.389,851.5l.707-.707,2.355,2.355V846h1v7.1l2.306-2.306.707.707-3.538,3.538Z" transform="translate(-12592.95 -421)" fill="#f3af3d"/>
-                                              <rect id="Rectangle_18661" data-name="Rectangle 18661" width="12" height="1" transform="translate(1341 436)" fill="#f3af3d"/>
-                                            </g>
-                                        </svg>
-                                    </a> --}}
+                                   
+                                   
                                 </td>
                             </tr>
-                        @endif
+                   
                     @endforeach
                 </tbody>
             </table>

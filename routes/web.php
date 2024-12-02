@@ -56,8 +56,49 @@ use App\Http\Controllers\ChallengeController;
 
 
 
+
+//Shop
+Route::controller(AboutMeController::class)->group(function () {
+    Route::get('/about_me', 'index')->name('about_me');
+    Route::post('/about_me/update', 'update')->name('about_me.update');
+    Route::get('/shop/apply-for-verification', 'verify_form')->name('shop.verify');
+    Route::post('/shop/verification_info_store', 'verify_form_store')->name('shop.verify.store');
+});
+
+
+
+Route::group(['middleware' => ['devloper', 'verified', 'unbanned']], function () {
+    Route::resource('work', MyWorkController::class);
+    //Route::post('/my_work', [MyWorkController::class, 'store'])->name('my_work.store');
+    Route::get('/Mywork', [MyWorkController::class, 'Mywork'])->name('Mywork');
+    // Devloper Route
+
+
+
+
+
+
+
+
+    Route::resource('orders', OrderController::class);
+    Route::controller(OrderController::class)->group(function () {
+
+
+
+        Route::post('/orders/update_delivery_status', 'update_delivery_status')->name('orders.update_delivery_status');
+        Route::post('/orders/update_payment_status', 'update_payment_status')->name('orders.update_payment_status');
+
+        Route::get('/seller_orders/{id}/show', 'show')->name('devloper_orders.show');
+
+
+
+        // Order bulk export
+        Route::get('/order-bulk-export', 'orderBulkExport')->name('order-bulk-export');
+    });
+});
+
 Route::resource('sections', SectionsController::class);
-    
+
 // Define a custom route to fetch sections by product ID
 Route::get('/sections', [SectionsController::class, 'index'])->name('sections.index');
 
@@ -67,11 +108,11 @@ Route::post('/sections/reorder', [SectionsController::class, 'reorder'])->name('
 Route::resource('lectures', LecturesController::class);
 
 Route::get('/lectures/show_image/{id}', [LecturesController::class, 'show_image'])->name('lectures.show_image');
-    // Event Routes
+// Event Routes
 
 
 
-    Route::resource('quize', QuizController::class);
+Route::resource('quize', QuizController::class);
 
 
 
@@ -124,53 +165,22 @@ Route::group(['middleware' => ['user', 'verified', 'unbanned']], function () {
 
 
 
-
-
-
-
-
     Route::controller(NotificationController::class)->group(function () {
         Route::get('/all-notifications', 'customerIndex')->name('customer.all-notifications');
         Route::post('/notifications/bulk-delete', 'bulkDeleteCustomer')->name('notifications.bulk_delete');
         Route::get('/notification/read-and-redirect/{id}', 'readAndRedirect')->name('notification.read-and-redirect');
         Route::get('/non-linkable-notification-read', 'nonLinkableNotificationRead')->name('non-linkable-notification-read');
     });
+
+
+
+
+
 });
 
 
 
 
-
-
-
-Route::group(['middleware' => ['devloper', 'verified', 'unbanned']], function () {
-    Route::post('/my-work', [MyWorkController::class, 'store'])->name('my-work.store');
-    Route::get('/Mywork', [MyWorkController::class, 'Mywork'])->name('Mywork');
-    // Devloper Route
-    Route::resource('my-work', MyWorkController::class);
-
-
-
-    //Shop
-    Route::controller(AboutMeController::class)->group(function () {
-        Route::get('/about_me', 'index')->name('about_me');
-        Route::post('/about_me/update', 'update')->name('about_me.update');
-        Route::get('/shop/apply-for-verification', 'verify_form')->name('shop.verify');
-        Route::post('/shop/verification_info_store', 'verify_form_store')->name('shop.verify.store');
-    });
-
-
-
-
-    Route::resource('orders', OrderController::class);
-    Route::controller(OrderController::class)->group(function () {
-        Route::post('/orders/update_delivery_status', 'update_delivery_status')->name('orders.update_delivery_status');
-        Route::post('/orders/update_payment_status', 'update_payment_status')->name('orders.update_payment_status');
-
-        // Order bulk export
-        Route::get('/order-bulk-export', 'orderBulkExport')->name('order-bulk-export');
-    });
-});
 
 
 
@@ -187,15 +197,16 @@ Route::group(['middleware' => ['teacher', 'verified', 'unbanned']], function () 
 
 
     // courses
-    Route::controller(ProductController::class)->group(function () {
-        Route::get('/my-courses', 'my_courses')->name('my-courses');
-        Route::get('/product/create', 'create')->name('teacher.products.create');
-        Route::post('/products/store/', 'store')->name('teacher.products.store');
-        Route::get('/product/{id}/edit', 'edit')->name('teacher.products.edit');
-        Route::post('/products/update/{product}', 'update')->name('teacher.products.update');
-        Route::get('/products/destroy/{id}', 'destroy')->name('teacher.products.destroy');
-    }
-);
+    Route::controller(ProductController::class)->group(
+        function () {
+            Route::get('/my-courses', 'my_courses')->name('my-courses');
+            Route::get('/product/create', 'create')->name('teacher.products.create');
+            Route::post('/products/store/', 'store')->name('teacher.products.store');
+            Route::get('/product/{id}/edit', 'edit')->name('teacher.products.edit');
+            Route::post('/products/update/{product}', 'update')->name('teacher.products.update');
+            Route::get('/products/destroy/{id}', 'destroy')->name('teacher.products.destroy');
+        }
+    );
 
 
 
@@ -205,32 +216,7 @@ Route::group(['middleware' => ['teacher', 'verified', 'unbanned']], function () 
 
 
 
-    Route::post('/my-work', [MyWorkController::class, 'store'])->name('my-work.store');
-    Route::get('/Mywork', [MyWorkController::class, 'Mywork'])->name('Mywork');
-    // Devloper Route
-    Route::resource('my-work', MyWorkController::class);
 
-
-
-    //Shop
-    Route::controller(AboutMeController::class)->group(function () {
-        Route::get('/about_me', 'index')->name('about_me');
-        Route::post('/about_me/update', 'update')->name('about_me.update');
-        Route::get('/shop/apply-for-verification', 'verify_form')->name('shop.verify');
-        Route::post('/shop/verification_info_store', 'verify_form_store')->name('shop.verify.store');
-    });
-
-
-
-
-    Route::resource('orders', OrderController::class);
-    Route::controller(OrderController::class)->group(function () {
-        Route::post('/orders/update_delivery_status', 'update_delivery_status')->name('orders.update_delivery_status');
-        Route::post('/orders/update_payment_status', 'update_payment_status')->name('orders.update_payment_status');
-
-        // Order bulk export
-        Route::get('/order-bulk-export', 'orderBulkExport')->name('order-bulk-export');
-    });
 });
 
 

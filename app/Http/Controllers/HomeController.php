@@ -85,6 +85,11 @@ class HomeController extends Controller
                 } else {
                     auth()->login($user, false);
                 }
+
+                if ($user->user_type == "admin") {
+                    return redirect()->route('admin.dashboard');
+                }
+
             } else {
                 flash(translate('Invalid email or password!'))->warning();
             }
@@ -93,9 +98,6 @@ class HomeController extends Controller
         }
 
 
-        if ($user->user_type == "admin") {
-            return redirect()->route('admin.dashboard');
-        }
 
         return back();
     }
@@ -134,7 +136,74 @@ class HomeController extends Controller
         return view('frontend.all_devloper', compact('shops', 'sort_search', 'approved', 'verification_status'));
     }
 
+    public function filter_shop(Request $request, $slug, $type)
+    {
+        if (get_setting('vendor_system_activation') != 1) {
+            return redirect()->route('home');
+        }
+        $shop  = Shop::where('slug', $slug)->first();
+        if ($shop != null && $type != null) {
+            if ($shop->user->banned == 1) {
+                abort(404);
+            }
+            if ($type == 'all-products') {
+                $sort_by = $request->sort_by;
+                $min_price = $request->min_price;
+                $max_price = $request->max_price;
+                $selected_categories = array();
+                $brand_id = null;
+                $rating = null;
 
+                $conditions = ['user_id' => $shop->user->id, 'published' => 1, 'approved' => 1];
+
+                if ($request->brand != null) {
+                    $brand_id = (Brand::where('slug', $request->brand)->first() != null) ? Brand::where('slug', $request->brand)->first()->id : null;
+                    $conditions = array_merge($conditions, ['brand_id' => $brand_id]);
+                }
+
+                $products = Product::where($conditions);
+
+                if ($request->has('selected_categories')) {
+                    $selected_categories = $request->selected_categories;
+                    $products->whereIn('category_id', $selected_categories);
+                }
+
+                if ($min_price != null && $max_price != null) {
+                    $products->where('price', '>=', $min_price)->where('price', '<=', $max_price);
+                }
+
+                if ($request->has('rating')) {
+                    $rating = $request->rating;
+                    $products->where('rating', '>=', $rating);
+                }
+
+                switch ($sort_by) {
+                    case 'newest':
+                        $products->orderBy('created_at', 'desc');
+                        break;
+                    case 'oldest':
+                        $products->orderBy('created_at', 'asc');
+                        break;
+                    case 'price-asc':
+                        $products->orderBy('price', 'asc');
+                        break;
+                    case 'price-desc':
+                        $products->orderBy('price', 'desc');
+                        break;
+                    default:
+                        $products->orderBy('id', 'desc');
+                        break;
+                }
+
+                $products = $products->paginate(24)->appends(request()->query());
+
+                return view('frontend.seller_shop', compact('shop', 'type', 'products', 'selected_categories', 'min_price', 'max_price', 'brand_id', 'sort_by', 'rating'));
+            }
+
+            return view('frontend.seller_shop', compact('shop', 'type'));
+        }
+        abort(404);
+    }
 
     public function product(Request $request, $slug)
     {

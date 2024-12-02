@@ -189,11 +189,6 @@
             $('#sort_orders').submit();
         }
 
-        function order_bulk_export (){
-            var url = '{{route('seller.order-bulk-export')}}';
-            $("#sort_orders").attr("action", url);
-            $('#sort_orders').submit();
-            $("#sort_orders").attr("action", '');
-        }
+     
     </script>
 @endsection

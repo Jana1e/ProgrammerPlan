@@ -31,7 +31,7 @@
                                         Delete Work
                                     </a>
                                     <form id="delete-work-form-{{ $work->id }}"
-                                        action="{{ route('my-work.destroy', $work->id) }}" method="POST"
+                                        action="{{ route('work.destroy', $work->id) }}" method="POST"
                                         style="display: none;">
                                         @csrf
                                         @method('DELETE')
@@ -105,7 +105,7 @@
                                         <h2 class="main_heading">Edit Work</h2>
                                     </div>
                                 </div>
-                                <form id="editWorkForm" action="{{ route('my-work.update', ['my_work' => '__ID__']) }}"
+                                <form id="editWorkForm" action="{{ route('work.update', ['work' => '__ID__']) }}"
                                     method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
@@ -242,7 +242,7 @@
                                 </div>
                             </div>
 
-                            <form action="{{ route('my-work.store') }}" method="POST" enctype="multipart/form-data"
+                            <form action="{{ route('work.store') }}" method="POST" enctype="multipart/form-data"
                                 id="choice_form">
                                 @csrf
                                 <!-- Data type -->
@@ -369,7 +369,7 @@
 
 
             // Update the form action
-            modalForm.setAttribute('action', `/my-work/${workId}`);
+            modalForm.setAttribute('action', `/work/${workId}`);
 
 
 

@@ -4,13 +4,22 @@
 
     
 
+
     <!-- Basic Info -->
     <div class="card profile_form">
         
         <div class="card-header">
             <h5 class="mb-0 h6">{{ translate('Basic Info') }}</h5>
 
-            <span class="ml-3 fs-13">(<a href="{{ route('shop.visit', $shop->slug) }}" class="btn btn-link btn-sm px-0" target="_blank">{{ translate('Visit Shop')}} <i class="las la-arrow-right"></i></a>)</span>
+
+            @if (Auth::check() && auth()->user()->user_type == 'teacher')
+            <span class="ml-3 fs-13">(<a href="{{ route('shop.visit', $shop->slug) }}" class="btn btn-link btn-sm px-0" target="_blank">{{ translate('Visit Portfolio')}} <i class="las la-arrow-right"></i></a>)</span>
+@else
+<span class="ml-3 fs-13">(<a href="{{ route('devloper.visit', $shop->slug) }}" class="btn btn-link btn-sm px-0" target="_blank">{{ translate('Visit Portfolio')}} <i class="las la-arrow-right"></i></a>)</span>
+
+@endif
+
+
 
         </div>
         <div class="card-body">

@@ -235,10 +235,12 @@
                                 </td>
                                 <td class="text-right">
                                     <a class="btn btn-soft-success btn-icon btn-circle btn-sm"
+                                    @if($product->slug)
                                         href="{{ route('product', $product->slug) }}" target="_blank"
                                         title="{{ translate('View') }}">
                                         <i class="las la-eye"></i>
                                     </a>
+                                    @endif
                                     @can('product_edit')
                                         @if ($type == 'teacher')
                                             <a class="btn btn-soft-primary btn-icon btn-circle btn-sm"

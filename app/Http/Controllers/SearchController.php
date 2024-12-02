@@ -59,10 +59,10 @@ class SearchController extends Controller
 
 
                 // Fetch all categories for the dropdown
-                $categories = Category::orderBy('name')->get();
+                $categories = Category::orderBy('name')->WHERE("digital",0)->get();
         
                 // Handling 'All Courses' Tab
-                $allCoursesQuery = Product::with('categories'); // Corrected relationship
+                $allCoursesQuery = Product::with('categories')->WHERE("digital",0); // Corrected relationship
         
                 // Apply category filter if selected
                 if ($request->filled('category') && $request->category !== 'all') { // Use 'all' to represent all categories
@@ -113,8 +113,7 @@ class SearchController extends Controller
 
 
                
-                      
-                
+
                         $yourCourses =$this->userCourses();
 
 
